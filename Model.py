@@ -91,6 +91,8 @@ class Cifar(nn.Module):
             print('Epoch {:d} Loss {:.6f} Duration {:.3f} seconds.'.format(epoch, loss.item(), duration),flush=True)
             if epoch % self.config.save_interval == 0:
                 self.save(epoch)
+        print("average_losses_0.1",avrg_losses)
+        print("epoch_losses:",epoch_loss)
         """plt.plot(epoch_loss)
         plt.xlabel('Epochs')
         plt.ylabel('Loss')
