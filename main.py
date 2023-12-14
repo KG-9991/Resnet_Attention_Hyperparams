@@ -19,7 +19,7 @@ def configure():
                         help='save the checkpoint when epoch MOD save_interval == 0')
     parser.add_argument("--first_num_filters", type=int, default=16, help='number of classes')
     parser.add_argument("--weight_decay", type=float, default=2e-4, help='weight decay rate')
-    parser.add_argument("--modeldir", type=str, default='model_hyper_attn_dropout0.1', help='model directory')
+    parser.add_argument("--modeldir", type=str, default='model_hyper_attn_withdropout0.1', help='model directory')
     parser.add_argument("--learning_rate", type=float, default=0.1, help='learning rate')
     parser.add_argument("--model_number", type=int, default=1, help='model number')
 
@@ -54,6 +54,8 @@ def main(config):
             model = Cifar(config).cuda()     
             model.train(x_train_new, y_train_new, 200)
             model.test_or_validate(x_valid, y_valid, [160,170,180,190,200])
+            print("test data::::")
+            model.test_or_validate(x_test, y_test, [160,170,180,190,200])
             config.model_number += 1
     ### YOUR CODE HERE
     """batch_sizes = [32,64,128,256,512,1024]
